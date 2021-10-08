@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import {connect} from 'react-redux';
+import { Addblog } from './redux/appreducer/action'
 
-const Form = () => {
+const Form = ({Addblog}) => {
     const [blog,Setblog] = useState({
         title: '',
         main:''
@@ -8,6 +10,11 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        Addblog(blog);
+        Setblog({
+            title: '',
+            main:''
+        })
     }
 
     const handleChange = event => {
@@ -52,4 +59,8 @@ const Form = () => {
     )
 }
 
-export default Form
+const MapDispatchToprops = dispatch => ({
+    Addblog: blog => dispatch(Addblog(blog)) 
+})
+
+export default connect(null,MapDispatchToprops)(Form);
