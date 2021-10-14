@@ -1,22 +1,35 @@
 import React from 'react'
-import Blogcontainer from './Blogcontainer'
+import { connect } from 'react-redux'
+import {Removeblog} from './redux/appreducer/action'
 
-const Blogbody = ({blog}) =>  (
-        <div className ='container'>
-            <div className='card bg-dark mb-3'>
-            <div class="card-body">
-                <h4 class="card-title">{blog.title}</h4>
-                <p class="card-text">{blog.main}</p>
-                <a href="#" class="edit card-link">
-                  <i class="fa fa-pencil"></i>
-                </a>
-    
-                <a href="#" className="delete card-link">
-                <i className="fa fa-remove"></i>
-              </a>
-              </div>
-            </div>
+const Blogbody = ({mainreducer, removeblog}) =>  {
+      return(
+        mainreducer.map((blog)=>(      
+        <div className ='container' key={blog.id}>
+        <div className='card bg-dark mb-3'>
+        <div class="card-body">
+            <h4 className="card-title">{blog.content.title}</h4>
+            <p className="card-text">{blog.content.main}</p>
+            <a href="#" className="edit card-link">
+              <i className="fa fa-pencil"></i>
+            </a>
+
+            <a href="#" className="delete card-link">
+            <i className="fa fa-remove" onClick={() => removeblog(blog.id)}></i>
+          </a>
+          </div>
         </div>
+    </div>)
     )
+)
+}
 
-export default Blogbody
+const MapStateToprops = state => ({
+  mainreducer: state.mainreducer.blog
+})
+
+const MapdispatchToprops = dispatch => ({
+  removeblog: index => dispatch(Removeblog(index))
+})
+
+export default connect(MapStateToprops,MapdispatchToprops)(Blogbody)

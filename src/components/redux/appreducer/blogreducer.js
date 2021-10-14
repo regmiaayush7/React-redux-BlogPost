@@ -11,6 +11,11 @@ const Blogreducer = (state= INTIAL_STATE, action) => {
                 ...state,
                 blog: [...state.blog,action.payload]
             }
+        case BlogActionTypes.REMOVE_BLOG:
+            return{
+                ...state,
+                blog: [...state.blog.filter((single)=> single.id !== action.payload)]
+            }    
         default:
             return state    
         

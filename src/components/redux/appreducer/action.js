@@ -7,3 +7,8 @@ export const Addblog = content => ({
     id:new Date().getTime().toString()
     }
 });
+
+export const Removeblog = index => ({
+    type: BlogActionTypes.REMOVE_BLOG,
+    payload: index
+});
