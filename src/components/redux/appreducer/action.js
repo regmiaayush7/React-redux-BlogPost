@@ -12,3 +12,8 @@ export const Removeblog = index => ({
     type: BlogActionTypes.REMOVE_BLOG,
     payload: index
 });
+
+export const Editblog = id => ({
+    type: BlogActionTypes.EDIT_BLOG,
+    payload: id
+})
