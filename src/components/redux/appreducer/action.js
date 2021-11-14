@@ -1,9 +1,10 @@
 import BlogActionTypes from "./action.type";
 
-export const Addblog = content => ({
+export const Addblog = (title,main) => ({
     type: BlogActionTypes.ADD_BLOG,
     payload :{ 
-    content: content,
+    title: title,
+    main: main,
     id:new Date().getTime().toString()
     }
 });
@@ -13,7 +14,25 @@ export const Removeblog = index => ({
     payload: index
 });
 
-export const Editblog = id => ({
+export const Editblog = (title,main,id) => ({
     type: BlogActionTypes.EDIT_BLOG,
-    payload: id
+    payload: {
+        title: title,
+        main: main,
+        id:id,
+    }
+});
+
+export const Addblogtxt = (title, main) => ({
+    type: BlogActionTypes.ADD_BLOG_TEXT,
+    payload: title, main
+});
+
+export const Editaddblog =  (title,main,id) => ({
+    type: BlogActionTypes.EDIT_ADD_BLOG,
+     payload: {
+        title: title,
+        main: main,
+        id:id,
+    }
 })
